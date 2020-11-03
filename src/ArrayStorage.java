@@ -6,7 +6,7 @@ public class ArrayStorage {
 	int size;
 
 	void clear() {
-		for (int i = 0; i < size;i++) {
+		for (int i = 0; i < size; i++) {
 			storage[i] = null;
 		}
 		size = 0;
@@ -15,7 +15,7 @@ public class ArrayStorage {
 	void save(Resume r) {
 		boolean repeatIs = false;
 
-		for (int i = 0; i < size;i++) {
+		for (int i = 0; i < size; i++) {
 			if (storage[i].toString() == r.toString()) {
 				System.out.printf("ERROR %s element is present in array!", r.toString());
 				repeatIs = true;
@@ -30,11 +30,11 @@ public class ArrayStorage {
 	Resume get(String uuid) {
 		Resume resume = null;
 
-		for (int i = 0; i < size;i++) {
+		for (int i = 0; i < size; i++) {
 			if (uuid == storage[i].toString()) {
 				resume = storage[i];
 				break;
-			} else resume = null;
+			}
 		}
 		if (resume == null)
 			System.out.printf("ERROR: No \"%s\" in storage array!", uuid);
@@ -42,11 +42,10 @@ public class ArrayStorage {
 	}
 
 	void delete(String uuid) {
-		uuid = uuid.toLowerCase();
-		Resume[] resume = storage;
+
 		boolean findUuidOk = false;
 
-		for (int i = 0; i < size;i++) {
+		for (int i = 0; i < size; i++) {
 			if (uuid == storage[i].toString()) {
 				if (i < storage.length) {
 					findUuidOk = true;
@@ -57,7 +56,7 @@ public class ArrayStorage {
 				}
 			}
 			if (findUuidOk) {
-				storage[i] = resume[i + 1];
+				storage[i] = storage[i + 1];
 			}
 		}
 		if (findUuidOk)
@@ -69,9 +68,8 @@ public class ArrayStorage {
 	 */
 	Resume[] getAll() {
 		Resume[] allResume = new Resume[size];
-		for (int i = 0; i < allResume.length;) {
+		for (int i = 0; i < size; i++) {
 			allResume[i] = storage[i];
-			i++;
 		}
 		return allResume;
 	}
