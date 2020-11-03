@@ -43,7 +43,7 @@ public class ArrayStorage {
 
 	void delete(String uuid) {
 		uuid = uuid.toLowerCase();
-		Resume[] resumeTemp = storage;
+		Resume[] resume = storage;
 		boolean findUuidOk = false;
 
 		for (int i = 0; i < size;i++) {
@@ -57,7 +57,7 @@ public class ArrayStorage {
 				}
 			}
 			if (findUuidOk) {
-				storage[i] = resumeTemp[i + 1];
+				storage[i] = resume[i + 1];
 			}
 		}
 		if (findUuidOk)
