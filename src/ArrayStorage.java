@@ -17,7 +17,6 @@ public class ArrayStorage {
 
 		for (int i = 0; i < size; i++) {
 			if (storage[i].toString() == r.toString()) {
-				System.out.printf("ERROR %s element is present in array!", r.toString());
 				repeatIs = true;
 			}
 		}
@@ -28,17 +27,15 @@ public class ArrayStorage {
 	}
 
 	Resume get(String uuid) {
-		Resume resume = null;
+		int i = 0;
 
-		for (int i = 0; i < size; i++) {
+		for (; i < size; i++) {
 			if (uuid == storage[i].toString()) {
-				resume = storage[i];
 				break;
 			}
 		}
-		if (resume == null)
-			System.out.printf("ERROR: No \"%s\" in storage array!", uuid);
-		return resume;
+
+		return storage[i];
 	}
 
 	void delete(String uuid) {
