@@ -20,7 +20,7 @@ public class ArrayStorage {
     public void save(Resume resume) {
         if (find(resume.getUuid()) >= 0) {
             System.out.println("ERROR: Resume " + resume.getUuid() + " is present at the storage.");
-        } else if (size > MAX_SIZE) {
+        } else if (size >= MAX_SIZE) {
             System.out.println("ERROR: storage is overspace.");
         } else {
             storage[size] = resume;
@@ -29,19 +29,19 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        if (find(uuid) >= 0) {
-            return storage[find(uuid)];
-        } else {
-            System.out.println("ERROR: Resume " + uuid + " is absent at the storage.");
-            return null;
+        int findResult = find(uuid);
+        if (findResult >= 0) {
+            return storage[findResult];
         }
+        System.out.println("ERROR: Resume " + uuid + " is absent at the storage.");
+        return null;
     }
 
     public void delete(String uuid) {
-        if (find(uuid) >= 0) {
-            for (int j = find(uuid); j < size - 1; j++) {
-                storage[j] = storage[j + 1];
-            }
+        int findResult = find(uuid);
+        if (findResult >= 0) {
+            if (size - 1 - findResult >= 0)
+                System.arraycopy(storage, findResult + 1, storage, findResult, size - 1 - findResult);
             size--;
         } else {
             System.out.println("ERROR: Resume " + uuid + " is absent at the storage.");
@@ -53,8 +53,9 @@ public class ArrayStorage {
     }
 
     public void update(Resume resume) {
-        if (find(resume.getUuid()) >= 0) {
-            storage[find(resume.getUuid())] = resume;
+        int findResult = find(resume.getUuid());
+        if (findResult >= 0) {
+            storage[findResult] = resume;
             System.out.println("Resume " + resume.getUuid() + " is updated");
         } else {
             System.out.println("ERROR: Resume " + resume.getUuid() + " is absent at the storage.");
