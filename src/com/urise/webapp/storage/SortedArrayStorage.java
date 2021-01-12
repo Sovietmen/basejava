@@ -5,10 +5,6 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
-    @Override
-    public void clear() {
-
-    }
 
     @Override
     public void save(Resume resume) {
@@ -22,7 +18,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public Resume[] getAll() {
-        return new Resume[0];
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
     @Override

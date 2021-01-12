@@ -39,25 +39,20 @@ public class MainArray {
                     resume = new Resume();
                     resume.setUuid(uuid);
                     ARRAY_STORAGE.save(resume);
-                    printAll();
                     break;
                 case "delete":
                     ARRAY_STORAGE.delete(uuid);
-                    printAll();
                     break;
                 case "get":
                     System.out.println(ARRAY_STORAGE.get(uuid));
-                    printAll();
                     break;
                 case "clear":
                     ARRAY_STORAGE.clear();
-                    printAll();
                     break;
                 case "update":
                     resume = new Resume();
                     resume.setUuid(uuid);
                     ARRAY_STORAGE.update(resume);
-                    printAll();
                     break;
                 case "exit":
                     return;

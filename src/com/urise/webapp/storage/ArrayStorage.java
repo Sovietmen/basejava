@@ -9,11 +9,6 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
-    public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
-    }
-
     public void save(Resume resume) {
         if (findIndex(resume.getUuid()) >= 0) {
             System.out.println("ERROR: Resume " + resume.getUuid() + " is present at the storage.");
