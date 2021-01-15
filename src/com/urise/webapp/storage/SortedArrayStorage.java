@@ -8,22 +8,38 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void save(Resume resume) {
-
+        int indexOfResume = findIndex(resume.getUuid());
+        if (indexOfResume >= 0) {
+            System.out.println("ERROR: Resume " + resume.getUuid() + " is present at the storage.");
+        } else if (size >= MAX_SIZE) {
+            System.out.println("ERROR: storage is overspace.");
+        } else if (indexOfResume < 0) {
+            indexOfResume = -(indexOfResume) - 1;
+            System.arraycopy(storage, indexOfResume, storage, indexOfResume + 1, size - indexOfResume);
+            storage[indexOfResume] = resume;
+            size++;
+        }
     }
 
     @Override
     public void delete(String uuid) {
-
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+        int indexOfResume = findIndex(uuid);
+        if (indexOfResume >= 0) {
+            System.arraycopy(storage, indexOfResume + 1, storage, indexOfResume, size - indexOfResume);
+            size--;
+        } else {
+            System.out.println("ERROR: Resume " + uuid + " is absent at the storage.");
+        }
     }
 
     @Override
     public void update(Resume resume) {
-
+        int indexOfResume = findIndex(resume.getUuid());
+        if (indexOfResume >= 0) {
+            storage[indexOfResume] = resume;
+        } else {
+            System.out.println("ERROR: Resume " + resume.getUuid() + " is absent at the storage.");
+        }
     }
 
     @Override

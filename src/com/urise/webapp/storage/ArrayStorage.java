@@ -2,8 +2,6 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
-import java.util.Arrays;
-
 /**
  * Array based storage for Resumes
  */
@@ -29,10 +27,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         } else {
             System.out.println("ERROR: Resume " + uuid + " is absent at the storage.");
         }
-    }
-
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
     }
 
     public void update(Resume resume) {

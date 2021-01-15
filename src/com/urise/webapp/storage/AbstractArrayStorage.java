@@ -23,6 +23,10 @@ public abstract class AbstractArrayStorage implements Storage {
         return null;
     }
 
+    public Resume[] getAll() {
+        return Arrays.copyOfRange(storage, 0, size);
+    }
+
     protected abstract int findIndex(String uuid);
 
     public int size() {
