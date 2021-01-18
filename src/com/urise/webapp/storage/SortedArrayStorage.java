@@ -33,16 +33,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    public void update(Resume resume) {
-        int indexOfResume = findIndex(resume.getUuid());
-        if (indexOfResume >= 0) {
-            storage[indexOfResume] = resume;
-        } else {
-            System.out.println("ERROR: Resume " + resume.getUuid() + " is absent at the storage.");
-        }
-    }
-
-    @Override
     protected int findIndex(String uuid) {
         Resume searchKey = new Resume();
         searchKey.setUuid(uuid);

@@ -29,16 +29,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
     }
 
-    public void update(Resume resume) {
-        int findResult = findIndex(resume.getUuid());
-        if (findResult >= 0) {
-            storage[findResult] = resume;
-            System.out.println("Resume " + resume.getUuid() + " is updated");
-        } else {
-            System.out.println("ERROR: Resume " + resume.getUuid() + " is absent at the storage.");
-        }
-    }
-
     /*
     method of searching resume by uuid: if resume with specified uuid is in the storage,
     return position resume at the storage else return -1

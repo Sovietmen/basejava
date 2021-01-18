@@ -27,6 +27,15 @@ public abstract class AbstractArrayStorage implements Storage {
         return Arrays.copyOfRange(storage, 0, size);
     }
 
+    public void update(Resume resume) {
+        int indexOfResume = findIndex(resume.getUuid());
+        if (indexOfResume >= 0) {
+            storage[indexOfResume] = resume;
+        } else {
+            System.out.println("ERROR: Resume " + resume.getUuid() + " is absent at the storage.");
+        }
+    }
+
     protected abstract int findIndex(String uuid);
 
     public int size() {
