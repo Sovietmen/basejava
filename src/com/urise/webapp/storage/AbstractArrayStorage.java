@@ -15,9 +15,9 @@ public abstract class AbstractArrayStorage implements Storage {
 	}
 
 	public Resume get(String uuid) {
-		int findResult = findIndex(uuid);
-		if (findResult >= 0) {
-			return storage[findResult];
+		int index = findIndex(uuid);
+		if (index >= 0) {
+			return storage[index];
 		}
 		System.out.println("ERROR: Resume " + uuid + " is absent at the storage.");
 		return null;
@@ -28,9 +28,9 @@ public abstract class AbstractArrayStorage implements Storage {
 	}
 
 	public void update(Resume resume) {
-		int indexOfResume = findIndex(resume.getUuid());
-		if (indexOfResume >= 0) {
-			storage[indexOfResume] = resume;
+		int index = findIndex(resume.getUuid());
+		if (index >= 0) {
+			storage[index] = resume;
 		} else {
 			System.out.println("ERROR: Resume " + resume.getUuid() + " is absent at the storage.");
 		}
@@ -42,7 +42,7 @@ public abstract class AbstractArrayStorage implements Storage {
 			System.out.println("ERROR: Resume " + resume.getUuid() + " is present at the storage.");
 		} else if (size >= MAX_SIZE) {
 			System.out.println("ERROR: storage is overspace.");
-		} else if (index < 0) {
+		} else {
 			saveUnit(resume, index);
 			size++;
 		}
