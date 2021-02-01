@@ -8,14 +8,15 @@ import java.lang.reflect.Method;
 
 public class MainReflection {
     public static void main(String[] args) throws IllegalAccessException, InvocationTargetException {
-        Resume r = new Resume();
+        String uuid = "uuid";
+        Resume r = new Resume(uuid);
         Field[] fields = r.getClass().getDeclaredFields();
-        for (Field field: fields) {
+        for (Field field : fields) {
             field.setAccessible(true);
-            field.set(r,"new_UUID");
+            field.set(r, "new_UUID");
             System.out.println(field.get(r));
         }
-        Method resumeToString = r.getClass().getDeclaredMethods()[3];
+        Method resumeToString = r.getClass().getDeclaredMethods()[2];
         System.out.println(resumeToString.invoke(r));
     }
 }
