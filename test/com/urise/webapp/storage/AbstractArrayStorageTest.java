@@ -102,7 +102,7 @@ abstract class AbstractArrayStorageTest {
 	@Test
 	void overflow() {
 		storage.clear();
-		int maxSize = 10_000;
+		int maxSize = AbstractArrayStorage.MAX_SIZE;
 		try {
 			for (int i = 0; i < maxSize; i++) {
 				storage.save(new Resume("uuid" + (i + 1)));
