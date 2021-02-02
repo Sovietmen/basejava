@@ -15,7 +15,7 @@ public class MainReflection {
 		field.setAccessible(true);
 		field.set(r, "new_UUID");
 		System.out.println(field.get(r));
-		Method resumeToString = r.getClass().getDeclaredMethod("toString", null);
+		Method resumeToString = r.getClass().getDeclaredMethod("toString");
 		System.out.println(resumeToString.invoke(r));
 	}
 }
