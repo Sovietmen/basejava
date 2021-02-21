@@ -11,7 +11,7 @@ public interface Storage {
 
     void delete(String uuid);
 
-    Resume[] getAll();
+    Object[] getAll();
 
     void update(Resume resume);
 

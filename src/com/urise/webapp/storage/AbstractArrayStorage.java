@@ -1,13 +1,13 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.exception.ExistStorageExceprion;
+import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
-public abstract class AbstractArrayStorage implements Storage {
+public abstract class AbstractArrayStorage extends AbstractStorage {
     protected static final int MAX_SIZE = 10_000;
     protected Resume[] storage = new Resume[MAX_SIZE];
     protected int size = 0;
@@ -17,12 +17,35 @@ public abstract class AbstractArrayStorage implements Storage {
         size = 0;
     }
 
+    public void save(Resume resume) {
+        int index = findIndex(resume.getUuid());
+        if (index >= 0) {
+            throw new ExistStorageException(resume.getUuid());
+        } else if (size >= MAX_SIZE) {
+            throw new StorageException("storage is overflow", resume.getUuid());
+        } else {
+            saveResume(resume, index);
+            size++;
+        }
+    }
+
     public Resume get(String uuid) {
         int index = findIndex(uuid);
         if (index >= 0) {
             return storage[index];
         }
         throw new NotExistStorageException(uuid);
+    }
+
+    public void delete(String uuid) {
+        int index = findIndex(uuid);
+        if (index >= 0) {
+            deleteResume(uuid, index);
+            storage[size] = null;
+            size--;
+        } else {
+            throw new NotExistStorageException(uuid);
+        }
     }
 
     public Resume[] getAll() {
@@ -35,29 +58,6 @@ public abstract class AbstractArrayStorage implements Storage {
             storage[index] = resume;
         } else {
             throw new NotExistStorageException(resume.getUuid());
-        }
-    }
-
-    public void save(Resume resume) {
-        int index = findIndex(resume.getUuid());
-        if (index >= 0) {
-            throw new ExistStorageExceprion(resume.getUuid());
-        } else if (size >= MAX_SIZE) {
-            throw new StorageException("storage is overflow", resume.getUuid());
-        } else {
-            saveResume(resume, index);
-            size++;
-        }
-    }
-
-    public void delete(String uuid) {
-        int index = findIndex(uuid);
-        if (index >= 0) {
-            deleteResume(uuid, index);
-            storage[size] = null;
-            size--;
-        } else {
-            throw new NotExistStorageException(uuid);
         }
     }
 
