@@ -10,7 +10,6 @@ import java.util.Objects;
 public class ListStorage extends AbstractStorage {
     protected List<Resume> storage = new ArrayList<>();
 
-
     @Override
     protected boolean isExist(String uuid) {
         for (Resume resume : storage) {
