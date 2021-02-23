@@ -58,8 +58,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return index >= 0;
     }
 
-    protected abstract int findIndex(String uuid);
-
     protected abstract void saveResume(Resume resume, int index);
 
     protected abstract void deleteResume(String uuid, int index);

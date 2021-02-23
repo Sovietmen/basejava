@@ -3,7 +3,6 @@ package com.urise.webapp.storage;
 import com.urise.webapp.model.Resume;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,26 +26,17 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected void doDelete(String uuid) {
-        Iterator<Resume> iter = storage.iterator();
-        while (iter.hasNext()) {
-            Resume r = iter.next();
-            if (Objects.equals(r.getUuid(), uuid)) iter.remove();
-        }
+        storage.remove(storage.get(findIndex(uuid)));
     }
 
     @Override
     protected Resume doGet(String uuid) {
-        for (Resume resume : storage) {
-            if (Objects.equals(resume.getUuid(), uuid)) return resume;
-        }
-        return null;
+        return storage.get(findIndex(uuid));
     }
 
     @Override
     protected void doUpdate(Resume resume) {
-        for (Resume res : storage) {
-            if (Objects.equals(resume.getUuid(), res.getUuid())) storage.set(storage.indexOf(res), resume);
-        }
+        storage.set(findIndex(resume.getUuid()), resume);
     }
 
     @Override
@@ -62,5 +52,13 @@ public class ListStorage extends AbstractStorage {
     @Override
     public int size() {
         return storage.size();
+    }
+
+    @Override
+    protected int findIndex(String uuid) {
+        for (Resume resume : storage) {
+            if (Objects.equals(resume.getUuid(), uuid)) return storage.indexOf(resume);
+        }
+        return -1;
     }
 }

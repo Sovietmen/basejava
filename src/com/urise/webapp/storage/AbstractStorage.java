@@ -44,4 +44,6 @@ public abstract class AbstractStorage implements Storage {
     protected abstract Resume doGet(String uuid);
 
     protected abstract void doUpdate(Resume resume);
+
+    protected abstract int findIndex(String uuid);
 }
