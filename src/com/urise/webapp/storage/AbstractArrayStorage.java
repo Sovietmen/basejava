@@ -17,11 +17,11 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doSave(Resume resume) {
+    protected void doSave(Resume resume, int index) {
         if (size >= MAX_SIZE) {
             throw new StorageException("storage is overflow", resume.getUuid());
         }
-        saveResume(resume, findIndex(resume.getUuid()));
+        saveResume(resume, index);
         size++;
     }
 

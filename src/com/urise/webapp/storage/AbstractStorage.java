@@ -10,7 +10,7 @@ public abstract class AbstractStorage implements Storage {
     public void save(Resume resume) {
         if (isExist(resume.getUuid())) {
             throw new ExistStorageException(resume.getUuid());
-        } else doSave(resume);
+        } else doSave(resume, findIndex(resume.getUuid()));
 
     }
 
@@ -37,7 +37,7 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract boolean isExist(String uuid);
 
-    protected abstract void doSave(Resume resume);
+    protected abstract void doSave(Resume resume, int index);
 
     protected abstract void doDelete(String uuid, int index);
 
