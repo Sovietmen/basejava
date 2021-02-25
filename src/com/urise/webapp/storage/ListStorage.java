@@ -25,18 +25,18 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doDelete(String uuid) {
-        storage.remove(storage.get(findIndex(uuid)));
+    protected void doDelete(String uuid, int index) {
+        storage.remove(storage.get(index));
     }
 
     @Override
-    protected Resume doGet(String uuid) {
-        return storage.get(findIndex(uuid));
+    protected Resume doGet(String uuid, int index) {
+        return storage.get(index);
     }
 
     @Override
-    protected void doUpdate(Resume resume) {
-        storage.set(findIndex(resume.getUuid()), resume);
+    protected void doUpdate(Resume resume, int index) {
+        storage.set(index, resume);
     }
 
     @Override

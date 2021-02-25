@@ -26,13 +26,12 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected Resume doGet(String uuid) {
-        return storage[findIndex(uuid)];
+    protected Resume doGet(String uuid, int index) {
+        return storage[index];
     }
 
     @Override
-    public void doDelete(String uuid) {
-        int index = findIndex(uuid);
+    public void doDelete(String uuid, int index) {
         deleteResume(uuid, index);
         storage[size] = null;
         size--;
@@ -44,8 +43,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public void doUpdate(Resume resume) {
-        storage[findIndex(resume.getUuid())] = resume;
+    public void doUpdate(Resume resume, int index) {
+        storage[index] = resume;
     }
 
     public int size() {
