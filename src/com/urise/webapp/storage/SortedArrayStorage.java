@@ -8,7 +8,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void saveResume(Resume resume, int key) {
-        key = -((int) key) - 1;
+        key = -(key) - 1;
         System.arraycopy(storage, key, storage, key + 1, size - key);
         storage[key] = resume;
     }
