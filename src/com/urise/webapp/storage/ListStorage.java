@@ -10,11 +10,9 @@ public class ListStorage extends AbstractStorage {
     protected List<Resume> storage = new ArrayList<>();
 
     @Override
-    protected boolean isExist(String uuid) {
-        for (Resume resume : storage) {
-            if (Objects.equals(resume.getUuid(), uuid)) {
-                return true;
-            }
+    protected boolean isExist(Object key) {
+        if ((int) key >= 0) {
+            return true;
         }
         return false;
     }
