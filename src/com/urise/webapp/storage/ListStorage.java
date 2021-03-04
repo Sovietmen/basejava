@@ -4,17 +4,13 @@ import com.urise.webapp.model.Resume;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ListStorage extends AbstractStorage {
     protected List<Resume> storage = new ArrayList<>();
 
     @Override
     protected boolean isExist(Object key) {
-        if ((int) key >= 0) {
-            return true;
-        }
-        return false;
+            return ((int) key >= 0);
     }
 
     @Override
@@ -54,9 +50,6 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected Object searchKey(String uuid) {
-        for (Resume resume : storage) {
-            if (Objects.equals(resume.getUuid(), uuid)) return storage.indexOf(resume);
-        }
-        return -1;
+        return storage.indexOf(new Resume(uuid));
     }
 }
