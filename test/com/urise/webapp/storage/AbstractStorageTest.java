@@ -10,10 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class AbstractStorageTest {
-    private final Storage storage;
+    protected final Storage storage;
     private static final String UUID_1 = "uuid1";
     private static final String UUID_2 = "uuid2";
     private static final String UUID_3 = "uuid3";
+    private static final String UUID_4 = "uuid4";
 
     private static final Resume resume1 = new Resume(UUID_1);
     private static final Resume resume2 = new Resume(UUID_2);
@@ -33,9 +34,9 @@ public abstract class AbstractStorageTest {
 
     @Test
     void saveNew() {
-        Resume resume = new Resume("testUUID");
+        Resume resume = new Resume(UUID_4);
         storage.save(resume);
-        assertEquals(resume, storage.get("testUUID"));
+        assertEquals(resume, storage.get(UUID_4));
         assertEquals(4, storage.size());
     }
 
@@ -51,7 +52,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     void getNotExist() {
-        assertThrows(NotExistStorageException.class, () -> storage.get("someID"));
+        assertThrows(NotExistStorageException.class, () -> storage.get(UUID_4));
     }
 
     @Test
@@ -63,7 +64,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     void deleteNotExist() {
-        assertThrows(NotExistStorageException.class, () -> storage.delete("someID"));
+        assertThrows(NotExistStorageException.class, () -> storage.delete(UUID_4));
     }
 
     @Test
@@ -75,7 +76,7 @@ public abstract class AbstractStorageTest {
 
     @Test
     void updatedNotExist() {
-        assertThrows(NotExistStorageException.class, () -> storage.update(new Resume("someID")));
+        assertThrows(NotExistStorageException.class, () -> storage.update(new Resume(UUID_4)));
     }
 
     @Test
