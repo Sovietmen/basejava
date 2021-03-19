@@ -10,7 +10,7 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected boolean isExist(Object key) {
-            return ((int) key >= 0);
+        return ((int) key >= 0);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public Object[] getAll() {
-        return storage.toArray();
+    protected List<Resume> doList() {
+        return storage;
     }
 
     @Override
@@ -50,6 +50,14 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected Object searchKey(String uuid) {
-        return storage.indexOf(new Resume(uuid));
+        //return storage.indexOf(new Resume(uuid));
+        int i = 0;
+        for (Resume r : storage) {
+            if (r.getUuid().equals(uuid)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
     }
 }
