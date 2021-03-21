@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -95,7 +94,6 @@ public abstract class AbstractStorageTest {
 
     @Test
     void getAllSorted() {
-        List<Resume> resumes = storage.getAllSorted();
-        assertEquals(resumes, Arrays.asList(resume1, resume2, resume3));
+        assertEquals(Arrays.asList(resume1, resume2, resume3), storage.getAllSorted());
     }
 }

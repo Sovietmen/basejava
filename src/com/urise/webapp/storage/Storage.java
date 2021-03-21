@@ -13,8 +13,6 @@ public interface Storage {
 
     void delete(String uuid);
 
-//    Object[] getAll();
-
     List<Resume> getAllSorted();
 
     void update(Resume resume);

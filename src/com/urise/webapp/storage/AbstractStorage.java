@@ -4,7 +4,7 @@ import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public abstract class AbstractStorage implements Storage {
@@ -14,36 +14,39 @@ public abstract class AbstractStorage implements Storage {
         if (isExist(searchKey(resume.getUuid()))) {
             throw new ExistStorageException(resume.getUuid());
         } else doSave(resume, searchKey(resume.getUuid()));
-
     }
 
     @Override
     public Resume get(String uuid) {
-        if (isExist(searchKey(uuid))) {
-            return doGet(searchKey(uuid));
-        } else throw new NotExistStorageException(uuid);
+        if (existence.exist(uuid)) return doGet(searchKey(uuid));
+        return null;
     }
 
     @Override
     public void delete(String uuid) {
-        if (!isExist(searchKey(uuid))) {
-            throw new NotExistStorageException(uuid);
-        } else doDelete(searchKey(uuid));
+        if (existence.exist(uuid)) doDelete(searchKey(uuid));
     }
 
     @Override
     public void update(Resume resume) {
-        if (isExist(searchKey(resume.getUuid()))) {
-            doUpdate(resume, searchKey(resume.getUuid()));
-        } else throw new NotExistStorageException(resume.getUuid());
+        if (existence.exist(resume.getUuid())) doUpdate(resume, searchKey(resume.getUuid()));
     }
 
     @Override
     public List<Resume> getAllSorted() {
         List<Resume> list = doList();
-        Collections.sort(list);
+        list.sort(Comparator.comparing(Resume::getUuid));
         return list;
     }
+
+    interface Existence {
+        boolean exist(String uuid);
+    }
+
+    final Existence existence = (uuid) -> {
+        if (!isExist(searchKey(uuid))) throw new NotExistStorageException(uuid);
+        return isExist(searchKey(uuid));
+    };
 
     protected abstract List<Resume> doList();
 
