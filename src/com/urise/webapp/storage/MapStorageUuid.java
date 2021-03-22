@@ -37,7 +37,7 @@ public class MapStorageUuid extends AbstractStorage {
 
     @Override
     protected void doUpdate(Resume resume, Object key) {
-        storage.replace(resume.getUuid(), storage.get(resume.getUuid()), resume);
+        storage.replace((String) key, resume);
     }
 
     @Override

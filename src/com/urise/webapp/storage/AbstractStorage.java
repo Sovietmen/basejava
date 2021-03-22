@@ -18,18 +18,18 @@ public abstract class AbstractStorage implements Storage {
 
     @Override
     public Resume get(String uuid) {
-        if (existence.exist(uuid)) return doGet(searchKey(uuid));
+        if (existence(uuid)) return doGet(searchKey(uuid));
         return null;
     }
 
     @Override
     public void delete(String uuid) {
-        if (existence.exist(uuid)) doDelete(searchKey(uuid));
+        if (existence(uuid)) doDelete(searchKey(uuid));
     }
 
     @Override
     public void update(Resume resume) {
-        if (existence.exist(resume.getUuid())) doUpdate(resume, searchKey(resume.getUuid()));
+        if (existence(resume.getUuid())) doUpdate(resume, searchKey(resume.getUuid()));
     }
 
     @Override
@@ -39,14 +39,10 @@ public abstract class AbstractStorage implements Storage {
         return list;
     }
 
-    interface Existence {
-        boolean exist(String uuid);
-    }
-
-    final Existence existence = (uuid) -> {
+    private boolean existence(String uuid) {
         if (!isExist(searchKey(uuid))) throw new NotExistStorageException(uuid);
         return isExist(searchKey(uuid));
-    };
+    }
 
     protected abstract List<Resume> doList();
 
