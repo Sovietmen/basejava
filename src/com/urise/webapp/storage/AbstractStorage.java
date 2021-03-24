@@ -18,30 +18,39 @@ public abstract class AbstractStorage implements Storage {
 
     @Override
     public Resume get(String uuid) {
-        if (existence(uuid)) return doGet(searchKey(uuid));
-        return null;
+        return doGet(getSarchKeyIfExist(uuid));
     }
 
     @Override
     public void delete(String uuid) {
-        if (existence(uuid)) doDelete(searchKey(uuid));
+        doDelete(getSarchKeyIfExist(uuid));
     }
 
     @Override
     public void update(Resume resume) {
-        if (existence(resume.getUuid())) doUpdate(resume, searchKey(resume.getUuid()));
+        doUpdate(resume, getSarchKeyIfExist(resume.getUuid()));
     }
 
     @Override
     public List<Resume> getAllSorted() {
         List<Resume> list = doList();
-        list.sort(Comparator.comparing(Resume::getUuid));
+        
+       final Comparator<Resume> COMPARATOR_RESUME = new Comparator<Resume>() {
+			@Override
+			public int compare(Resume resume1, Resume resume2) {
+				if (resume1.getFullName().compareTo(resume2.getFullName()) == 0) {
+					return resume2.getUuid().compareTo(resume2.getUuid());
+				} else return resume1.getFullName().compareTo(resume2.getFullName());
+			}
+		};
+		
+		list.sort(COMPARATOR_RESUME);
         return list;
     }
 
-    private boolean existence(String uuid) {
+    private Object getSarchKeyIfExist(String uuid) {
         if (!isExist(searchKey(uuid))) throw new NotExistStorageException(uuid);
-        return isExist(searchKey(uuid));
+        return searchKey(uuid);
     }
 
     protected abstract List<Resume> doList();
@@ -54,7 +63,7 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract Resume doGet(Object key);
 
-    protected abstract void doUpdate(Resume resume, Object key);
+	protected abstract void doUpdate(Resume resume, Object key);
 
-    protected abstract Object searchKey(String uuid);
+	protected abstract Object searchKey(String uuid);
 }
