@@ -11,9 +11,10 @@ public abstract class AbstractStorage implements Storage {
 
     @Override
     public void save(Resume resume) {
-        if (isExist(searchKey(resume.getUuid()))) {
+        Object key = searchKey(resume.getUuid());
+        if (isExist(key)) {
             throw new ExistStorageException(resume.getUuid());
-        } else doSave(resume, searchKey(resume.getUuid()));
+        } else doSave(resume, key);
     }
 
     @Override
@@ -35,22 +36,16 @@ public abstract class AbstractStorage implements Storage {
     public List<Resume> getAllSorted() {
         List<Resume> list = doList();
         
-       final Comparator<Resume> COMPARATOR_RESUME = new Comparator<Resume>() {
-			@Override
-			public int compare(Resume resume1, Resume resume2) {
-				if (resume1.getFullName().compareTo(resume2.getFullName()) == 0) {
-					return resume2.getUuid().compareTo(resume2.getUuid());
-				} else return resume1.getFullName().compareTo(resume2.getFullName());
-			}
-		};
+       final Comparator<Resume> COMPARATOR_RESUME = Comparator.comparing(Resume::getFullName).thenComparing(Resume::getUuid);
 		
 		list.sort(COMPARATOR_RESUME);
         return list;
     }
 
     private Object getSarchKeyIfExist(String uuid) {
-        if (!isExist(searchKey(uuid))) throw new NotExistStorageException(uuid);
-        return searchKey(uuid);
+        Object key = searchKey(uuid);
+        if (!isExist(key)) throw new NotExistStorageException(uuid);
+        return key;
     }
 
     protected abstract List<Resume> doList();
