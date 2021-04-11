@@ -6,7 +6,7 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractArrayStorage extends AbstractStorage {
+public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
     protected static final int MAX_SIZE = 10_000;
     protected Resume[] storage = new Resume[MAX_SIZE];
     protected int size = 0;
@@ -18,22 +18,22 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doSave(Resume resume, Object key) {
+    protected void doSave(Resume resume, Integer key) {
         if (size >= MAX_SIZE) {
             throw new StorageException("storage is overflow ", resume.getUuid());
         }
-        saveResume(resume, (int) key);
+        saveResume(resume, key);
         size++;
     }
 
     @Override
-    protected Resume doGet(Object key) {
-        return storage[(int) key];
+    protected Resume doGet(Integer key) {
+        return storage[key];
     }
 
     @Override
-    public void doDelete(Object key) {
-        deleteResume((int) key);
+    public void doDelete(Integer key) {
+        deleteResume(key);
         storage[size] = null;
         size--;
     }
@@ -44,8 +44,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    public void doUpdate(Resume resume, Object key) {
-        storage[(int) key] = resume;
+    public void doUpdate(Resume resume, Integer key) {
+        storage[key] = resume;
     }
 
     public int size() {
@@ -53,8 +53,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isExist(Object key) {
-        return (int) key >= 0;
+    protected boolean isExist(Integer key) {
+        return  key >= 0;
     }
 
     protected abstract void saveResume(Resume resume, int key);
