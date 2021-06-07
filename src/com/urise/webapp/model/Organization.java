@@ -6,8 +6,12 @@ public class Organization {
     private String name, position, responsibility;
     private LocalDate startDate, endDate;
 
-    Organization(String name) {
+    public Organization(String name, String position, String responsibility, LocalDate startDate, LocalDate endDate) {
         this.name = name;
+        this.position = position;
+        this.responsibility = responsibility;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public String getName() {
@@ -18,31 +22,15 @@ public class Organization {
         return position;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
     public String getResponsibility() {
         return responsibility;
-    }
-
-    public void setResponsibility(String responsibility) {
-        this.responsibility = responsibility;
     }
 
     public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
     }
 }

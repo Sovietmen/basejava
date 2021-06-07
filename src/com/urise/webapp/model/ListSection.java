@@ -2,10 +2,10 @@ package com.urise.webapp.model;
 
 import java.util.*;
 
-public class ListSection extends Section {
+public class ListSection extends AbstractSection {
     private ArrayList<String> content;
 
-    ListSection (ArrayList<String> content) {
+    public ListSection(ArrayList<String> content) {
         this.content = content;
     }
 
