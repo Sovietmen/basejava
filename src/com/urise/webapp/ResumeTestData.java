@@ -2,7 +2,7 @@ package com.urise.webapp;
 
 import com.urise.webapp.model.*;
 
-import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 
 public class ResumeTestData {
@@ -32,17 +32,22 @@ public class ResumeTestData {
         qualifications.add("Отличное знание и опыт применения концепций ООП, SOA, шаблонов проектрирования, архитектурных шаблонов, UML, функционального программирования");
         qualifications.add("Родной русский, английский \"upper intermediate\"");
 
-        ArrayList<Organization> organizations = new ArrayList<>();
-        organizations.add(new Organization("Java Online Projects", "Автор проекта.", "Создание, организация и проведение Java онлайн проектов и стажировок.", LocalDate.of(2013,10,0), LocalDate.now()));
-        organizations.add(new Organization("Wrike", "Старший разработчик (backend)", "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO.", LocalDate.of(2014,10, 0), LocalDate.of(2016, 1, 0)));
-        organizations.add(new Organization("RIT Center", "Java архитектор", "Организация процесса разработки системы ERP для разных окружений: релизная политика, версионирование, ведение CI (Jenkins), миграция базы (кастомизация Flyway), конфигурирование системы (pgBoucer, Nginx), AAA via SSO. Архитектура БД и серверной части системы. Разработка интергационных сервисов: CMIS, BPMN2, 1C (WebServices), сервисов общего назначения (почта, экспорт в pdf, doc, html). Интеграция Alfresco JLAN для online редактирование из браузера документов MS Office. Maven + plugin development, Ant, Apache Commons, Spring security, Spring MVC, Tomcat,WSO2, xcmis, OpenCmis, Bonita, Python scripting, Unix shell remote scripting via ssh tunnels, PL/Python", LocalDate.of(2012,4, 0), LocalDate.of(2014, 10, 0)));
+        ArrayList<Organization> experience = new ArrayList<>();
+        experience.add(new Organization("Java Online Projects", "Автор проекта.", "Создание, организация и проведение Java онлайн проектов и стажировок.", YearMonth.of(2013, 10), YearMonth.now()));
+        experience.add(new Organization("Wrike", "Старший разработчик (backend)", "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO.", YearMonth.of(2014, 10), YearMonth.of(2016, 1)));
+        experience.add(new Organization("RIT Center", "Java архитектор", "Организация процесса разработки системы ERP для разных окружений: релизная политика, версионирование, ведение CI (Jenkins), миграция базы (кастомизация Flyway), конфигурирование системы (pgBoucer, Nginx), AAA via SSO. Архитектура БД и серверной части системы. Разработка интергационных сервисов: CMIS, BPMN2, 1C (WebServices), сервисов общего назначения (почта, экспорт в pdf, doc, html). Интеграция Alfresco JLAN для online редактирование из браузера документов MS Office. Maven + plugin development, Ant, Apache Commons, Spring security, Spring MVC, Tomcat,WSO2, xcmis, OpenCmis, Bonita, Python scripting, Unix shell remote scripting via ssh tunnels, PL/Python", YearMonth.of(2012, 4), YearMonth.of(2014, 10)));
+        experience.add(new Organization("Luxoft (Deutsche Bank)", "Ведущий программист", "Участие в проекте Deutsche Bank CRM (WebLogic, Hibernate, Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация клиентской и серверной части CRM. Реализация RIA-приложения для администрирования, мониторинга и анализа результатов в области алгоритмического трейдинга. JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5.", YearMonth.of(2010, 12), YearMonth.of(2012, 04)));
+        experience.add(new Organization("Yota", "Ведущий специалист", "Дизайн и имплементация Java EE фреймворка для отдела \"Платежные Системы\" (GlassFish v2.1, v3, OC4J, EJB3, JAX-WS RI 2.1, Servlet 2.4, JSP, JMX, JMS, Maven2). Реализация администрирования, статистики и мониторинга фреймворка. Разработка online JMX клиента (Python/ Jython, Django, ExtJS)", YearMonth.of(2008, 6), YearMonth.of(2010, 12)));
+        experience.add(new Organization("Enkata", "Разработчик ПО", "Реализация клиентской (Eclipse RCP) и серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей кластерного J2EE приложения (OLAP, Data mining).", YearMonth.of(2007, 3), YearMonth.of(2008, 6)));
+        experience.add(new Organization("Siemens AG", "Разработчик ПО", "Разработка информационной модели, проектирование интерфейсов, реализация и отладка ПО на мобильной IN платформе Siemens @vantage (Java, Unix).", YearMonth.of(2005, 1), YearMonth.of(2005, 2)));
+        experience.add(new Organization("Alcatel", "Инженер по аппаратному и программному тестированию", "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM).", YearMonth.of(1997, 9), YearMonth.of(2005, 1)));
 
         ArrayList<Organization> educations = new ArrayList<>();
-        educations.add(new Organization("Coursera", "", "Functional Programming Principles in Scala\" by Martin Odersky", LocalDate.of(2013,3,0), LocalDate.of(2013,5,0)));
-        educations.add(new Organization("Luxoft", "", "Курс \"Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.\"", LocalDate.of(2011,3,0), LocalDate.of(2011,4,0)));
-        educations.add(new Organization("Siemens AG", "", "3 месяца обучения мобильным IN сетям (Берлин)", LocalDate.of(2005,1,0), LocalDate.of(2005,4,0)));
-        educations.add(new Organization("Alcatel", "", "6 месяцев обучения цифровым телефонным сетям (Москва)", LocalDate.of(1997,9,0), LocalDate.of(1998,3,0)));
-        educations.add(new Organization("Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "", "Инженер (программист Fortran, C)", LocalDate.of(1987,9,0), LocalDate.of(1993,7,0)));
+        educations.add(new Organization("Coursera", "", "Functional Programming Principles in Scala\" by Martin Odersky", YearMonth.of(2013, 3), YearMonth.of(2013, 5)));
+        educations.add(new Organization("Luxoft", "", "Курс \"Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.\"", YearMonth.of(2011, 3), YearMonth.of(2011, 4)));
+        educations.add(new Organization("Siemens AG", "", "3 месяца обучения мобильным IN сетям (Берлин)", YearMonth.of(2005, 1), YearMonth.of(2005, 4)));
+        educations.add(new Organization("Alcatel", "", "6 месяцев обучения цифровым телефонным сетям (Москва)", YearMonth.of(1997, 9), YearMonth.of(1998, 3)));
+        educations.add(new Organization("Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "", "Инженер (программист Fortran, C)", YearMonth.of(1987, 9), YearMonth.of(1993, 7)));
 
         Resume kislinResume = new Resume("r01", "Григорий Кислин");
         kislinResume.addContact(ContactType.PHONE, "+7(921) 855-0482");
@@ -56,8 +61,44 @@ public class ResumeTestData {
         kislinResume.addSection(SectionType.PERSONAL, new TextSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры."));
         kislinResume.addSection(SectionType.ACHIEVMENT, new ListSection(achievments));
         kislinResume.addSection(SectionType.QUALIFICATIONS, new ListSection(qualifications));
-        kislinResume.addSection(SectionType.EXPERIENCE, new OrganizationSection(organizations));
+        kislinResume.addSection(SectionType.EXPERIENCE, new OrganizationSection(experience));
         kislinResume.addSection(SectionType.EDUCATION, new OrganizationSection(educations));
+
+        System.out.println(kislinResume.getFullName());
+        System.out.println("-----Контакты-----\n");
+        System.out.println("Phone number: " + kislinResume.getContact(ContactType.PHONE));
+        System.out.println("E-mail: " + kislinResume.getContact(ContactType.MAIL));
+        System.out.println("Skype: " + kislinResume.getContact(ContactType.SKYPE));
+        System.out.println("Linkedin: " + kislinResume.getContact(ContactType.LINK));
+        System.out.println("Профиль github: " + kislinResume.getContact(ContactType.LINK2));
+        System.out.println("Профиль stackoverflow: " + kislinResume.getContact(ContactType.LINK3));
+        System.out.println("\n-----" + SectionType.OBJECTIVE.getTitle() + "-----\n");
+        System.out.println(((TextSection) (kislinResume.getSection(SectionType.OBJECTIVE))).getContent());
+        System.out.println("\n-----" + SectionType.PERSONAL.getTitle() + "-----\n");
+        System.out.println(((TextSection) (kislinResume.getSection(SectionType.PERSONAL))).getContent());
+        System.out.println("\n-----" + SectionType.ACHIEVMENT.getTitle() + "-----\n");
+        for (String s : (((ListSection) (kislinResume.getSection(SectionType.ACHIEVMENT))).getContent())) {
+            System.out.println("- " + s);
+        }
+        System.out.println("\n-----" + SectionType.QUALIFICATIONS.getTitle() + "-----\n");
+        for (String s : (((ListSection) (kislinResume.getSection(SectionType.QUALIFICATIONS))).getContent())) {
+            System.out.println("- " + s);
+        }
+        System.out.println("\n-----" + SectionType.EXPERIENCE.getTitle() + "-----\n");
+        for (Organization s : (((OrganizationSection) (kislinResume.getSection(SectionType.EXPERIENCE))).getContent())) {
+            System.out.println(s.getName());
+            System.out.println(s.getStartDate() + " - " + s.getEndDate());
+            System.out.println(s.getPosition());
+            System.out.println(s.getResponsibility());
+            System.out.println();
+        }
+        System.out.println("-----" + SectionType.EDUCATION.getTitle() + "-----\n");
+        for (Organization s : (((OrganizationSection) (kislinResume.getSection(SectionType.EDUCATION))).getContent())) {
+            System.out.println(s.getName());
+            System.out.println(s.getStartDate() + " - " + s.getEndDate());
+            System.out.println(s.getResponsibility());
+            System.out.println();
+        }
 
     }
 }

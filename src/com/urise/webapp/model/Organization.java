@@ -1,12 +1,12 @@
 package com.urise.webapp.model;
 
-import java.time.LocalDate;
+import java.time.YearMonth;
 
 public class Organization {
     private String name, position, responsibility;
-    private LocalDate startDate, endDate;
+    private YearMonth startDate, endDate;
 
-    public Organization(String name, String position, String responsibility, LocalDate startDate, LocalDate endDate) {
+    public Organization(String name, String position, String responsibility, YearMonth startDate, YearMonth endDate) {
         this.name = name;
         this.position = position;
         this.responsibility = responsibility;
@@ -26,11 +26,11 @@ public class Organization {
         return responsibility;
     }
 
-    public LocalDate getStartDate() {
+    public YearMonth getStartDate() {
         return startDate;
     }
 
-    public LocalDate getEndDate() {
+    public YearMonth getEndDate() {
         return endDate;
     }
 }
