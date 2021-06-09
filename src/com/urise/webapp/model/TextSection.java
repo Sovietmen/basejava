@@ -10,4 +10,9 @@ public class TextSection extends AbstractSection {
     public String getContent() {
         return content;
     }
+
+    @Override
+    public String toString() {
+        return content;
+    }
 }

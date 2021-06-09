@@ -12,4 +12,13 @@ public class OrganizationSection extends AbstractSection {
     public ArrayList<Organization> getContent() {
         return content;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        for (Object s : content.toArray()){
+            string.append(s);
+        }
+        return string.toString();
+    }
 }

@@ -33,4 +33,12 @@ public class Organization {
     public YearMonth getEndDate() {
         return endDate;
     }
+
+    @Override
+    public String toString() {
+        return  name + "\n" +
+                startDate.toString() +" - " + endDate.toString() + "\n" +
+                position + "\n" +
+                responsibility + "\n";
+    }
 }

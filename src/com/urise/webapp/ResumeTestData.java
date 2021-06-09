@@ -43,11 +43,11 @@ public class ResumeTestData {
         experience.add(new Organization("Alcatel", "Инженер по аппаратному и программному тестированию", "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM).", YearMonth.of(1997, 9), YearMonth.of(2005, 1)));
 
         ArrayList<Organization> educations = new ArrayList<>();
-        educations.add(new Organization("Coursera", "", "Functional Programming Principles in Scala\" by Martin Odersky", YearMonth.of(2013, 3), YearMonth.of(2013, 5)));
-        educations.add(new Organization("Luxoft", "", "Курс \"Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.\"", YearMonth.of(2011, 3), YearMonth.of(2011, 4)));
-        educations.add(new Organization("Siemens AG", "", "3 месяца обучения мобильным IN сетям (Берлин)", YearMonth.of(2005, 1), YearMonth.of(2005, 4)));
-        educations.add(new Organization("Alcatel", "", "6 месяцев обучения цифровым телефонным сетям (Москва)", YearMonth.of(1997, 9), YearMonth.of(1998, 3)));
-        educations.add(new Organization("Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "", "Инженер (программист Fortran, C)", YearMonth.of(1987, 9), YearMonth.of(1993, 7)));
+        educations.add(new Organization("Coursera", "Functional Programming Principles in Scala\" by Martin Odersky", "", YearMonth.of(2013, 3), YearMonth.of(2013, 5)));
+        educations.add(new Organization("Luxoft", "Курс \"Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.\"", "", YearMonth.of(2011, 3), YearMonth.of(2011, 4)));
+        educations.add(new Organization("Siemens AG", "3 месяца обучения мобильным IN сетям (Берлин)", "", YearMonth.of(2005, 1), YearMonth.of(2005, 4)));
+        educations.add(new Organization("Alcatel", "6 месяцев обучения цифровым телефонным сетям (Москва)", "", YearMonth.of(1997, 9), YearMonth.of(1998, 3)));
+        educations.add(new Organization("Санкт-Петербургский национальный исследовательский университет информационных технологий, механики и оптики", "Инженер (программист Fortran, C)", "", YearMonth.of(1987, 9), YearMonth.of(1993, 7)));
 
         Resume kislinResume = new Resume("r01", "Григорий Кислин");
         kislinResume.addContact(ContactType.PHONE, "+7(921) 855-0482");
@@ -71,42 +71,8 @@ public class ResumeTestData {
         }
         
         for (SectionType st: SectionType.values()) {
-        	System.out.println("\n-----" + st.getTitle() + "-----");
-        	switch (st) {
-        	case OBJECTIVE:
-        		System.out.println(((TextSection) (kislinResume.getSection(st))).getContent());
-        		break;
-        	case PERSONAL:
-        		System.out.println(((TextSection) (kislinResume.getSection(st))).getContent());
-        		break;
-        	case ACHIEVMENT:
-        		for (String s : (((ListSection) (kislinResume.getSection(st))).getContent())) {
-                  System.out.println("- " + s);
-              }
-        		break;
-        	case QUALIFICATIONS:
-        		for (String s : (((ListSection) (kislinResume.getSection(st))).getContent())) {
-                    System.out.println("- " + s);
-        		}
-        		break;
-        	case EXPERIENCE:
-        		for (Organization s : (((OrganizationSection) (kislinResume.getSection(st))).getContent())) {
-        			System.out.println(s.getName());
-        			System.out.println(s.getStartDate() + " - " + s.getEndDate());
-        			System.out.println(s.getPosition());
-        			System.out.println(s.getResponsibility());
-        			System.out.println();
-              }
-        		break;
-        	case EDUCATION:
-        		for (Organization s : (((OrganizationSection) (kislinResume.getSection(SectionType.EDUCATION))).getContent())) {
-        			System.out.println(s.getName());
-        			System.out.println(s.getStartDate() + " - " + s.getEndDate());
-        			System.out.println(s.getResponsibility());
-        			System.out.println();
-                 }
-        		break;
-        	}
+            System.out.println("\n-----" + st.getTitle() +"-----");
+            System.out.println(kislinResume.getSection(st).toString());
         }
     }
 }
