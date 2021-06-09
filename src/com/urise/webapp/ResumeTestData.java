@@ -65,40 +65,48 @@ public class ResumeTestData {
         kislinResume.addSection(SectionType.EDUCATION, new OrganizationSection(educations));
 
         System.out.println(kislinResume.getFullName());
-        System.out.println("-----Контакты-----\n");
-        System.out.println("Phone number: " + kislinResume.getContact(ContactType.PHONE));
-        System.out.println("E-mail: " + kislinResume.getContact(ContactType.MAIL));
-        System.out.println("Skype: " + kislinResume.getContact(ContactType.SKYPE));
-        System.out.println("Linkedin: " + kislinResume.getContact(ContactType.LINK));
-        System.out.println("Профиль github: " + kislinResume.getContact(ContactType.LINK2));
-        System.out.println("Профиль stackoverflow: " + kislinResume.getContact(ContactType.LINK3));
-        System.out.println("\n-----" + SectionType.OBJECTIVE.getTitle() + "-----\n");
-        System.out.println(((TextSection) (kislinResume.getSection(SectionType.OBJECTIVE))).getContent());
-        System.out.println("\n-----" + SectionType.PERSONAL.getTitle() + "-----\n");
-        System.out.println(((TextSection) (kislinResume.getSection(SectionType.PERSONAL))).getContent());
-        System.out.println("\n-----" + SectionType.ACHIEVMENT.getTitle() + "-----\n");
-        for (String s : (((ListSection) (kislinResume.getSection(SectionType.ACHIEVMENT))).getContent())) {
-            System.out.println("- " + s);
+        System.out.println("\n-----Контакты-----");
+        for (ContactType ct: ContactType.values()) {
+        	System.out.println(ct.getTitle() + ": " + kislinResume.getContact(ct));
         }
-        System.out.println("\n-----" + SectionType.QUALIFICATIONS.getTitle() + "-----\n");
-        for (String s : (((ListSection) (kislinResume.getSection(SectionType.QUALIFICATIONS))).getContent())) {
-            System.out.println("- " + s);
+        
+        for (SectionType st: SectionType.values()) {
+        	System.out.println("\n-----" + st.getTitle() + "-----");
+        	switch (st) {
+        	case OBJECTIVE:
+        		System.out.println(((TextSection) (kislinResume.getSection(st))).getContent());
+        		break;
+        	case PERSONAL:
+        		System.out.println(((TextSection) (kislinResume.getSection(st))).getContent());
+        		break;
+        	case ACHIEVMENT:
+        		for (String s : (((ListSection) (kislinResume.getSection(st))).getContent())) {
+                  System.out.println("- " + s);
+              }
+        		break;
+        	case QUALIFICATIONS:
+        		for (String s : (((ListSection) (kislinResume.getSection(st))).getContent())) {
+                    System.out.println("- " + s);
+        		}
+        		break;
+        	case EXPERIENCE:
+        		for (Organization s : (((OrganizationSection) (kislinResume.getSection(st))).getContent())) {
+        			System.out.println(s.getName());
+        			System.out.println(s.getStartDate() + " - " + s.getEndDate());
+        			System.out.println(s.getPosition());
+        			System.out.println(s.getResponsibility());
+        			System.out.println();
+              }
+        		break;
+        	case EDUCATION:
+        		for (Organization s : (((OrganizationSection) (kislinResume.getSection(SectionType.EDUCATION))).getContent())) {
+        			System.out.println(s.getName());
+        			System.out.println(s.getStartDate() + " - " + s.getEndDate());
+        			System.out.println(s.getResponsibility());
+        			System.out.println();
+                 }
+        		break;
+        	}
         }
-        System.out.println("\n-----" + SectionType.EXPERIENCE.getTitle() + "-----\n");
-        for (Organization s : (((OrganizationSection) (kislinResume.getSection(SectionType.EXPERIENCE))).getContent())) {
-            System.out.println(s.getName());
-            System.out.println(s.getStartDate() + " - " + s.getEndDate());
-            System.out.println(s.getPosition());
-            System.out.println(s.getResponsibility());
-            System.out.println();
-        }
-        System.out.println("-----" + SectionType.EDUCATION.getTitle() + "-----\n");
-        for (Organization s : (((OrganizationSection) (kislinResume.getSection(SectionType.EDUCATION))).getContent())) {
-            System.out.println(s.getName());
-            System.out.println(s.getStartDate() + " - " + s.getEndDate());
-            System.out.println(s.getResponsibility());
-            System.out.println();
-        }
-
     }
 }
