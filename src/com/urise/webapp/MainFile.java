@@ -15,7 +15,7 @@ public class MainFile {
         }
         File dir = new File("./src/com/urise/webapp");
         System.out.println(dir.isDirectory());
-        if (dir.list()!=null) {
+        if (dir.list() != null) {
             for (String n : dir.list()) {
                 System.out.println(n);
             }
@@ -25,6 +25,5 @@ public class MainFile {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
