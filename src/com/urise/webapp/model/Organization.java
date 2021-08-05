@@ -5,39 +5,26 @@ import java.util.*;
 import java.util.Objects;
 
 public class Organization {
-    private String name, responsibility;
-    private YearMonth startDate, endDate;
+    private Link orgPage;
     private List<Position> positions = new ArrayList<>();
 
-    public Organization(String name, Position... positions) {
-        this.name = name;
+    public Organization(String name, String url, Position... positions) {
+        this.orgPage = new Link(name, url);
         this.positions = Arrays.asList(positions);
     }
 
-    public String getName() {
-        return name;
+    public Link getOrgPage() {
+        return orgPage;
     }
 
     public List getPositions() {
         return positions;
     }
 
-    public String getResponsibility() {
-        return responsibility;
-    }
-
-    public YearMonth getStartDate() {
-        return startDate;
-    }
-
-    public YearMonth getEndDate() {
-        return endDate;
-    }
-
     @Override
     public String toString() {
-        String s = name + "\n";
-        for (Position p: positions) {
+        String s = orgPage.getName() + "\n";
+        for (Position p : positions) {
             s = s + p.toString();
         }
         return s;
@@ -50,7 +37,7 @@ public class Organization {
         private String posName;
         private String responsibility;
 
-        public Position(String posName, String responsibility, YearMonth startDate, YearMonth endDate){
+        public Position(String posName, String responsibility, YearMonth startDate, YearMonth endDate) {
             this.posName = posName;
             this.responsibility = responsibility;
             this.startDate = startDate;
